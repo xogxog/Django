@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+  
+  
+
+  <div class="main row">
+
+    <h1 class="text-center fw-bold display-2" style="border: 50px; margin: 100px 0px 50px;">BTS</h1>
+    <a href="{% url 'BTS:create' %}">[등록하기](멤버등록완료후 없애기)</a>
+    <hr>
+    {% comment %} 마진값 세팅하는것..! {% endcomment %}
+    <img src="{% static 'BTS/PBTS1.png' %}" alt="main_bts"> 
+
+    <hr>
+      <!-- Sidebar -->
+    <aside class="col-12 col-lg-2">
+      <div class="list-group">
+        <a href="{% url 'BTS:album_index' %}" class="list-group-item list-group-item-action">Albums</a>
+        <a href="#" class="list-group-item list-group-item-action">Run!BTS</a>
+      </div>
+    </aside>
+
+
+    <section class="d-none d-lg-block col-lg-10">
+        <div>
+          <table class="table table-striped">
+            <thead>
+              <tr class="table-dark">
+                <th scope="col">멤버이름</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for member in BTS %}
+              <tr>
+                <th>
+                  <a href="{% url 'BTS:detail' member.pk %}" style="text-decoration:none" >{{ member.name }}</a>
+                </th>
+                  {% empty %}
+                  <p>게시글 하나도 없음</p>
+              </tr>
+            {% endfor %}
+            </tbody>
+          </table>
+        </div>
+      </section>
+  
+  </div>
+
+{% endblock content %}
+
+
+
+

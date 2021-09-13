@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+
+{% comment %} 프로필내용 {% endcomment %}
+{% block content %}
+  <div class="d-flex flex-column align-items-center">
+    <h2 class="text-center fw-bold display-2" style="border: 50px; margin: 100px 0px 50px;">프로필</h2>
+    <h3>이름 : {{member.name}}</h3>
+    <hr>
+    <img src="{{ member.image.url }}" class="card-img-top" style="width : 500px">
+    <p> 생일 : {{ member.birth }}</p>
+    <p> 키 : {{ member.height }}</p>
+    <p>상세내용 : {{ member.content }}</p>
+
+    <hr>
+    <div class="d-flex align-items-center">
+    {% comment %} 업데이트 {% endcomment %}
+      <form action="{% url 'BTS:update' member.pk %}" style="display:inline-block">
+        {% csrf_token %}
+        <button class = 'btn btn-outline-success'>업데이트하기</button>
+      </form>
+      {% comment %} 삭제하기 {% endcomment %}
+      <form action="{% url 'BTS:delete' member.pk %}" method='POST' style="display:inline-block">
+        {% csrf_token %}
+        <button class = 'btn btn-outline-danger'>삭제하기</button>
+      </form>
+      <form action="{% url 'BTS:index' %}" style="display:inline-block">
+        <button class = 'btn btn-outline-success'>홈으로</button>
+      </form>
+    </div>
+  </div>
+
+{% endblock content %}
+
+
+
+
+
+
+
+
+

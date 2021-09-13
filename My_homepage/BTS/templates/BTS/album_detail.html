@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+{% comment %} 프로필내용 {% endcomment %}
+{% block content %}
+<h2 class="text-center fw-bold display-2" style="border: 50px; margin: 100px 0px 50px;">앨범정보</h2>
+<hr>
+<div class="d-flex flex-column align-items-center">
+
+    <h3>{{album.title}}</h3>
+    <br>
+    <img src="{{ album.album_cover.url }}" alt="album.album_cover.url" style="width : 300px">
+    <hr>
+    <p>{{album.released}}</p>
+    <p>{{album.singer}}</p>
+
+
+</div>
+<hr>
+
+{% for song in album_songs %}
+
+  <p>{{song.title}}</p>
+
+{% endfor %}
+
+
+<form action="{% url 'BTS:album_index' %}" style="display:inline-block">
+  <button class = 'btn btn-outline-success'>홈으로</button>
+</form>
+
+
+{% endblock content %}

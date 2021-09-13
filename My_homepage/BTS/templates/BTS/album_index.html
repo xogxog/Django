@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+{% block content %}
+  
+  
+
+  <div class="row">
+    <h1 class="text-center fw-bold display-2" style="border: 50px; margin: 100px 0px 50px;">BTS</h1>
+    <hr>
+    <div class = "col-12 col-lg-2">  
+      {% comment %} 마진값 세팅하는것..! {% endcomment %}
+      
+        <!-- Sidebar -->
+      <aside class="">
+        <div class="list-group">
+          <button type="button" class="list-group-item list-group-item-action" onclick={% url 'BTS:album_index' %} >Albums</button>
+          <button type="button" class="list-group-item list-group-item-action">Run!BTS</button>
+        </div>
+      </aside>
+      <a href="{% url 'BTS:album_index_create' %}">앨범등록하기</a>
+    </div>
+  
+    <div class = "item col-12 col-lg-10">
+      <h1 class="text-center fw-bold mt-3 mb-5">앨범</h1>
+      <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 row-cols-xl-4 g-4">
+        {% for album in albums %}
+          <div class="col">
+            <a href="{% url 'BTS:album_detail' album.pk %}" class="text-decoration-none text-black">
+              <div class="card bg-dark">
+                <img src="{{ album.album_cover.url }}" class="card-img-top" alt="album cover">
+                <div class="card-body">
+                  <h5 class="card-title text-center fw-bold text-white">{{ album.title }}</h5>
+                  <p class="card-text text-white">{{ album.released }}</p>
+                </div>
+              </div>
+            </a>
+          </div>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+  
+
+{% endblock content %}
